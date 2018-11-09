@@ -1,6 +1,7 @@
 ---
 - !policy
   id: puppet
+  owner: !group devops
   annotations:
     description: Conjur Puppet demo app policy
   body:
@@ -22,7 +23,7 @@
       annotations:
         description: login credential for app database
     - !group users
-    - !deny
+    - !permit
       role: !group users
       privileges: [ read, execute ]
       resources: [ !variable vendor-oauth-token, !variable postgres-password ]
