@@ -1,28 +1,34 @@
 # conjur-puppet-demo
-Demonstration of the use of Conjur module for Puppet
+Conjur module for puppet - demo
 
 ## How it works 
-#### 1 - docker-compose file will launch one puppet server and one conjur-cli.
-#### 2 - A policy will be loaded to conjur to define puppet group of hosts, some test secrets and permissions related to those secrets.
-#### 3 - A host factory token related to the puppet group of hosts is generated.
-#### MANUAL : the token retrieved in step 3 should be copied to puppet/manifests/secrets.pp to replace "placeholder".
-#### 4 - A puppet agent is ran using the docker-compose file, the puppet server will communicate the host factory token to the agent. 
-  - The agent will use the host factory token to enroll to Conjur (obtain an identity from Conjur).
-  - The agent can now use its own identity to fetch secrets from Conjur. (secrets are defined in the conjur/secrets.pp file and retrieved in puppet/manifests/site.pp file)
-  - Secrets retrieved are temporary stored and exposed for demo purposes
-#### 5 - Rotate secrets and run step 4 if you'd like to.__ 
-#### 6 & 7 : display information about what have been done.__ 
-#### 8 : clean environment
+1 - The docker-compose file is used to deploy a puppet server. The puppet server image is modified to install the Conjur module. 
+
+2 - The manifest secrets.pp is configured so that it can retrieve secrets from Conjur. 
+
+3 - A puppet agent is launched, it gets enrolled in Conjur, and can then use its own identity to retrieve secrets from Conjur (site.pp).
+
+Secrets that have been retrieved will be exposed in subfolders of tmp/ for demo purposes.
+
+4 - Clean environment
 
 ## Software Prerequisites
 Docker should be installed
 
 Docker-compose should be installed
 
-jq (On CentOS 7 : yum install epel-release && yum install jq)
-
 ## Variables to set
-Variables section of script 1 and 2 should be set.
+Variables should be set in the file vars.sh
+
+## Versions
+cyberark/conjur (module) : v1.2.0
+
+puppet : 6.2.0 (latest version as for 01/29/2019)
+ 
+
+
+
+
 
 
 
