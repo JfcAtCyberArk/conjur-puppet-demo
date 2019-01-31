@@ -5,9 +5,9 @@ docker-compose run --rm agent
 cat <<EOF
 =============================
 REPORT-Puppet agent ran with:
-postgres-password  => $(<tmp/dbpass)
-vendor-oauth-token => $(<tmp/token)
+artifactory-login  => $(<tmp/login)
+artifactory-api-key => $(<tmp/api-key)
 =============================
 EOF
 
-rm -f tmp/dbpass tmp/token
+rm -f tmp/login tmp/api-key

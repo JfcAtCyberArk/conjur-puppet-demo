@@ -1,15 +1,15 @@
 node 'default' {
   require secrets 
 
-  file { '/tmp/dbpass':
+  file { '/tmp/login':
     ensure    => file,
-    content   => "${secrets::postgres_password.unwrap}",
+    content   => "${secrets::artifactory_login.unwrap}",
     show_diff => false, # don't log file content
   }
 
-  file { '/tmp/token':
+  file { '/tmp/api-key':
     ensure    => file,
-    content   => "${secrets::vendor_oauth_token.unwrap}",
+    content   => "${secrets::artifactory_api_key.unwrap}",
     show_diff => false,
   }
 

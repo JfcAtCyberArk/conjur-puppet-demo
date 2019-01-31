@@ -18,17 +18,3 @@ services:
       - ./tmp:/tmp
     extra_hosts:
       - "{{ CONJUR_DNS_NAME }}:{{ CONJUR_IP }}"
-  conjur-cli:
-    container_name: conjur-cli
-    image: cyberark/conjur-cli:4
-    entrypoint: sleep
-    command: infinity
-    environment:
-      CONJUR_APPLIANCE_URL: https://{{ CONJUR_DNS_NAME }}/api
-      CONJUR_ACCOUNT: {{ CONJUR_ACCOUNT }}
-      CONJUR_AUTHN_LOGIN: {{ CONJUR_AUTHN_LOGIN }}
-      CONJUR_URL: https://{{ CONJUR_DNS_NAME }}
-    volumes:
-      - ./conjur:/demo
-    extra_hosts:
-      - "{{ CONJUR_DNS_NAME }}:{{ CONJUR_IP }}"
